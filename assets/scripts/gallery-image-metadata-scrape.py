@@ -20,8 +20,12 @@ for image in images:
     path=image.replace("..", "assets")
     title=iptc.get((2, 5), empty).decode().replace('"', "")
     location=iptc.get((2, 92), empty).decode()
+    if location == "Wye Greenhouse":
+        continue
     headline=iptc.get((2, 105), empty).decode()
     description=iptc.get((2, 120), empty).decode().replace("\r\r", " ").replace('<"\\r">', "").replace('"', "")#.replace("f'", "'").replace("\r\n", " ").replace("\n", " ")
+    if "Henry Lafayette Warren" in description:
+        headline = headline[:-1]
     creator=iptc.get((2, 122), empty).decode()
     city=iptc.get((2, 90), empty).decode()
     state=iptc.get((2, 95), empty).decode()
